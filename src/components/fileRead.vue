@@ -3,6 +3,9 @@
     <div id="readfile">
         <p>{{ message }}</p>
         <button v-on:click="readFile">Read File</button>
+        <input type="file" name="inputfile" id="inputfile">
+
+        <pre id="output"></pre>
     </div>
 </template>
 
@@ -18,10 +21,28 @@ export default {
         }
     },
     methods: {
-        readFile() {
-            this.message = this.message.split('').reverse();
-        }
+        // readFile() {
+        //     // var file = new File([""],"../../public/files/file1.txt");
+        //     // var reader = new FileReader();
+        //     // reader.readAsText(file);
+        //     // reader.onload = function() {
+        //     //     console.log(this.result);
+        //     // }
+
+
+            
+        // },
+    readFile() {
+        document.getElementById("inputfile").addEventListener("change", function() {
+            var reader = new FileReader();
+            reader.onload = function() {
+                document.getElementById("output").textContent = reader.result;
+            }
+            reader.readAsText(this.files[0]);
+        })
     }
+    }
+
 
 }
 
