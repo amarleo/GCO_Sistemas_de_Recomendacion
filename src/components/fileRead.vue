@@ -36,7 +36,10 @@ export default {
         document.getElementById("inputfile").addEventListener("change", function() {
             var reader = new FileReader();
             reader.onload = function() {
-                document.getElementById("output").textContent = reader.result;
+                var lines = this.result.split("\n");
+                for(var i = 0; i < lines.length; i++) {
+                    console.log(lines[i]);
+                }
             }
             reader.readAsText(this.files[0]);
         })
