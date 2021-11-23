@@ -1,5 +1,5 @@
 <template>
-  <fileRead msg="Welcome to Your Vue.js App"/>
+  <fileRead/>
 </template>
 
 <script>
