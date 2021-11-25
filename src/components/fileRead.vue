@@ -1,12 +1,12 @@
 <template>
     <p>hola</p>
     <div id="readfile">
-        <p>{{ message }}</p>
-        <input type="file" name="inputfile" id="inputfile">
-        <button v-on:click="readFile">Read File</button>
-        
-
+        <input v-on:click="readFile" type="file" name="inputfile" id="inputfile">
         <pre id="output"></pre>
+    </div>
+
+    <div>
+        Métrica a elegir
     </div>
 </template>
 
@@ -45,22 +45,27 @@ export default {
                     matrix = new Array(lines.length).fill(0).map(() => new Array(lines.length).fill(0));
                     for(var i = 0; i < lines.length; i++) {
                         matrix_content = lines;
+                        
                         matrix_content = this.result.split(/\s+/);
-    
-                        for (var j = 0; j < matrix_content.length / lines.length; j++) {
+                        
+                        for (var j = 0; j < (matrix_content.length / lines.length).toFixed(); j++) {
                             // OJO: AQUI CAMBIO DE STRING A INT
-                            matrix[i][j] = parseInt(matrix_content[(lines.length * i) + j]);
+                            matrix[i][j] = parseInt(matrix_content[((matrix_content.length / lines.length).toFixed() * i) + j]);
+                            console.log((matrix_content.length / lines.length).toFixed());
                         }
                     }
+                    
                     console.log(matrix);
+                    
                 }
 
                 reader.readAsText(this.files[0]);
             })
         },
 
-
-
+        selectMetrics() {
+            
+        }
 
     }
 
